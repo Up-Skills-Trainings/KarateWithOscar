@@ -24,3 +24,30 @@ Feature: Spartans API Functionality with Karate
 
     And def expectedSpartan = read("classpath:examples/testData/expectedSpartan.json")
     Then match response == expectedSpartan
+@smoke
+  Scenario:
+    * url spartanUrl
+    * path "api/spartans/search"
+    * header Accept = "application/json"
+    * param nameContains = "j"
+    * param gender = "Female"
+    * method get
+    # verification
+    * status 200
+    * def secondSpartan =
+  """
+      {
+            "id": 27,
+            "name": "Jeanelle",
+            "gender": "Female",
+            "phone": 6662999903
+        }
+  """
+    * match response.content[1] == secondSpartan
+    * match each response.content[*].gender == 'Female'
+    * match each response.content[*].phone == '#number'
+    * match each response.content[*].id == '#notnull'
+    * def sizeOfArray = response.content.length
+    * match  sizeOfArray == 13
+
+# Next week: Authorization, calling a feature file from another feature file, Calling a Java Class file in a feature, Data Driven testing
