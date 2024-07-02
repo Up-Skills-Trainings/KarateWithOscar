@@ -1,30 +1,30 @@
 Feature: Spartans API Functionality with Karate
 
   Background:
-    Given def spartanUrl = 'http://3.84.34.15:8000/'
+    Given def spartanUrl = 'http://3.84.109.78:8000'
     # def is used for creating variables, " or ' mark does not matter for Karate
-
+@smoke
   Scenario: Get one spartan and verify 200 body headers
     Given url spartanUrl
-    And path "api/spartans/1"
+    And path "api/spartans/108"
     And method get
     Then status 200
-    And match response.name == "Meade"
+    And match response.name == "Glenna"
 
     Given def firstSpartan =
     """
     {
-    "id": 1,
-    "name": "Meade",
+    "id": 108,
+    "name": "Glenna",
     "gender": "Male",
-    "phone": 3584128232
-    }
+    "phone": 1236547892
+}
     """
     And match response == firstSpartan
 
     And def expectedSpartan = read("classpath:examples/testData/expectedSpartan.json")
     Then match response == expectedSpartan
-@smoke
+@ignore
   Scenario:
     * url spartanUrl
     * path "api/spartans/search"

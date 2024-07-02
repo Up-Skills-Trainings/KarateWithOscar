@@ -6,7 +6,7 @@ public class TestRunner {
 
     @Karate.Test
     Karate testCydeo() {
-        return Karate.run("spartan").tags("@smoke").relativeTo(getClass());
+        return Karate.run("spartanFlow").tags("@smoke").relativeTo(getClass());
     }
 
 }
