@@ -18,7 +18,8 @@ class ParallelRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:examples").tags("@smoke")
+        Results results = Runner.path("classpath:examples").tags("@wip")
+                // put ~ tilde sign if you want to ignore some tags
                 .outputCucumberJson(true)
                 .parallel(5);
         generateReport(results.getReportDir());

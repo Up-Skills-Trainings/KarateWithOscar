@@ -39,3 +39,6 @@
       When method get
       Then status 404
       And response.error == "Not Found"
+
+
+      #HW: you can check HR API (ORDS), try to run similar scenarios like in regular class
